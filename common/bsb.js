@@ -1,17 +1,24 @@
 
+
 // expected hdr.js functions:
-// remoteGet(url, onLoad)
-// loadRatingsCache(function (cache){})
+// remoteGet(url, function(response){})
+// loadRatingsCache(function(cache){})
 // saveRatingsCache(cache)
+// loadOptions(function(options){})
 
 
-// OPTIONS: right now just edit these by hand (in the greasemonkey script, anyway)
+// OPTIONS: just edit these by hand for the greasemonkey script.
 var bsbOptions = {
 
   // scoreFormat: what will show up next to the title, in order.
-  // Choices are predictedRating, avgRating, matchScore, alreadyRated.
-  scoreFormat: ['predictedRating', 'matchScore', 'alreadyRated']
+  // Choices are predictedStars, avgStars, matchScore, alreadyRated.
+  scoreFormat: ['predictedStars', 'matchScore', 'alreadyRated']
 };
+
+loadOptions(function(options) {
+  bsbOptions = options || bsbOptions;
+  console.log(bsbOptions);
+});
 
 function toArr(arrLike) {
   return [].slice.call(arrLike);
@@ -73,16 +80,16 @@ function remoteGetRatings(titleId, onGet) {
   remoteGet(getDvdUrl(titleId), function(responseXML) {
     var rating = responseXML.querySelector('#ratingInfo');
     if (rating) {
-      var myRating = responseXML.querySelector('#movieDetailStars').dataset.myrating;
+      var myStars = responseXML.querySelector('#movieDetailStars').dataset.myrating;
       var spans = rating.querySelectorAll('span');
-      var predictedRating = spans[0].textContent.trim().split(' ')[0];
-      var avgRating = spans[1].textContent.trim().split(' ')[0];
+      var predictedStars = spans[0].textContent.trim().split(' ')[0];
+      var avgStars = spans[1].textContent.trim().split(' ')[0];
       onGet({
         found: true,
-        alreadyRated: myRating != "0.0" && myRating != "-1.0",
-        myRating: myRating,
-        predictedRating: predictedRating,
-        avgRating: avgRating,
+        alreadyRated: myStars != "0.0" && myStars != "-1.0",
+        myStars: myStars,
+        predictedStars: predictedStars,
+        avgStars: avgStars,
       });
     } else {
       onGet({ found: false });
@@ -167,10 +174,10 @@ function updateScore(wrapper, titleId) {
     if (ratings.found) {
       var scoreText = '';
       bsbOptions.scoreFormat.forEach(function(fmt) {
-        if (fmt == 'predictedRating') {
-          var stars = ratings.alreadyRated ? ratings.myRating : ratings[fmt];
+        if (fmt == 'predictedStars') {
+          var stars = ratings.alreadyRated ? ratings.myStars : ratings[fmt];
           scoreText += ' (' + stars + ' ★s) ';
-        } else if (fmt == 'avgRating') {
+        } else if (fmt == 'avgStars') {
           scoreText += ' (' + ratings[fmt] + ' avg★s) ';
         } else if (fmt == 'matchScore') {
           scoreText += ' ' + ratings[fmt] + '% ';

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+
+<style>
+body { font-family: Sans-Serif; color: #444 }
+#scoreFormat { width: 30em }
+#errmsg { color: #dd1111; margin-top: 1em }
+#infomsg { color: #11dd11; margin-top: 1em }
+</style>
+
+</head>
+<body>
+
+<form>
+  <label><b>Rating info to show: </b><input type="text" id="scoreFormat"></label>
+  <button type="submit">Save</button>
+  <div id="errmsg"></div>
+  <div id="infomsg"></div>
+  <p>
+    Here you can customize the ratings and information shown (in order) next to a Netflix title.
+    <br>Your options are <b>avgStars, predictedStars, matchScore, alreadyRated</b>.
+  <p>
+	Put them in just like that, with commas between them. Don't forget to hit save.
+</form>
+
+<script src="options.js"></script>
+
+</body>
+</html>

@@ -25,3 +25,9 @@ function loadRatingsCache(onLoad) {
 function saveRatingsCache(cache) {
   chrome.storage.local.set({ bsbRatingsCache: JSON.stringify(cache) });
 }
+
+function loadOptions(onLoad) {
+  chrome.storage.local.get('bsbOptions', function(result) {
+    onLoad(result.bsbOptions && JSON.parse(result.bsbOptions));
+  });
+}
