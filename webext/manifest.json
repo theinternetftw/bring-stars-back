@@ -8,7 +8,8 @@
 
   "icons": {
       "48": "icons/bsb-48.png",
-      "96": "icons/bsb-96.png"
+      "96": "icons/bsb-96.png",
+      "128": "icons/bsb-128.png"
   },
 
   "options_ui": {
