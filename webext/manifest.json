@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "Bring Stars Back",
-  "version": "1.01",
+  "version": "1.0.1",
 
   "description": "Places star ratings next to Netflix titles again, where possible.",
 
@@ -13,6 +13,12 @@
 
   "options_ui": {
       "page": "options.html"
+  },
+
+  "applications": {
+      "gecko": {
+          "id": "bring.stars.back@theinternetftw.com"
+      }
   },
 
   "permissions": ["https://dvd.netflix.com/*", "storage"],
