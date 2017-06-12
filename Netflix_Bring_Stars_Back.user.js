@@ -4,7 +4,7 @@
 // @include     https://www.netflix.com/browse
 // @include     https://www.netflix.com/browse/*
 // @include     https://www.netflix.com/title/*
-// @version     1.0
+// @version     1.01
 // @grant       GM_xmlhttpRequest
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -55,7 +55,6 @@ var bsbOptions = {
 
 loadOptions(function(options) {
   bsbOptions = options || bsbOptions;
-  console.log(bsbOptions);
 });
 
 function toArr(arrLike) {

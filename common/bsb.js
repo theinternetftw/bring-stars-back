@@ -17,7 +17,6 @@ var bsbOptions = {
 
 loadOptions(function(options) {
   bsbOptions = options || bsbOptions;
-  console.log(bsbOptions);
 });
 
 function toArr(arrLike) {
