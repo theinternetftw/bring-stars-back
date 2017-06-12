@@ -1,0 +1,27 @@
+{
+
+  "manifest_version": 2,
+  "name": "Bring Stars Back",
+  "version": "1.0",
+
+  "description": "Places star ratings next to Netflix titles again, where possible.",
+
+  "permissions": ["https://dvd.netflix.com/*", "storage"],
+
+  "icons": {
+      "48": "icons/bsb-48.png",
+      "96": "icons/bsb-96.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+          "https://www.netflix.com/browse",
+          "https://www.netflix.com/browse/*",
+          "https://www.netflix.com/title/*"
+      ],
+      "js": ["hdr.js","bsb.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
