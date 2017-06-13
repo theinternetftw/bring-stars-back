@@ -77,18 +77,21 @@ function getDvdUrl(titleId) {
 
 function remoteGetRatings(titleId, onGet) {
   remoteGet(getDvdUrl(titleId), function(responseXML) {
-    var rating = responseXML.querySelector('#ratingInfo');
-    if (rating) {
-      var myStars = responseXML.querySelector('#movieDetailStars').dataset.myrating;
-      var spans = rating.querySelectorAll('span');
-      var predictedStars = spans[0].textContent.trim().split(' ')[0];
-      var avgStars = spans[1].textContent.trim().split(' ')[0];
+    var movieDetail = responseXML.querySelector('#movieDetailStars');
+    if (movieDetail) {
+      var myStars = movieDetail.dataset.myrating;
+      var avgStars;
+      var rating = responseXML.querySelector('#ratingInfo');
+      if (rating) {
+        var spans = rating.querySelectorAll('span');
+        avgStars = spans[1].textContent.trim().split(' ')[0];
+      }
       onGet({
         found: true,
-        alreadyRated: myStars != "0.0" && myStars != "-1.0",
         myStars: myStars,
-        predictedStars: predictedStars,
-        avgStars: avgStars,
+        alreadyRated: myStars && myStars != "0.0" && myStars != "-1.0",
+        predictedStars: avgStars && movieDetail.dataset.prediction, // no avg stars == dvd-less and prediction-less, so clear this field
+        avgStars: avgStars || movieDetail.dataset.prediction, // avg stars stored in dataset.prediction for some reason if no dvd plan
       });
     } else {
       onGet({ found: false });
@@ -173,6 +176,10 @@ function updateScore(wrapper, titleId) {
     if (ratings.found) {
       var scoreText = '';
       bsbOptions.scoreFormat.forEach(function(fmt) {
+        if (!ratings.predictedStars && fmt == 'predictedStars') {
+            // override predictedStars so dvd-less folks get the only thing they can: avgStars
+            fmt = 'avgStars';
+        }
         if (fmt == 'predictedStars') {
           var stars = ratings.alreadyRated ? ratings.myStars : ratings[fmt];
           scoreText += ' (' + stars + ' ★s) ';

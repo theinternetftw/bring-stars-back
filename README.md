@@ -1,6 +1,8 @@
 # bring-stars-back
 
-This is a Greasemonkey script which adds DVD star ratings for Netflix titles back to the streaming site (for the titles that appear on the DVD side of the site). This probably requires a DVD enabled Netflix account.
+This is a greasemonkey script and browser extension which adds DVD star ratings for Netflix titles back to the streaming site (for the titles that appear on the DVD side of the site).
+
+To get predicted ratings for your profile requires a DVD enabled Netflix account, otherwise only an average community star rating is available.
 
 ### Features:
 
@@ -12,5 +14,4 @@ This is a Greasemonkey script which adds DVD star ratings for Netflix titles bac
 Note that Netflix does not have a public API, thus this extension may break at any time.
 
 Also, this is a hack developed just far enough to be comfortable for my personal use. It may mature over time, but it's starting off as just fulfilling a request to share exactly what I'm using, not to provide a polished product.
-
 
