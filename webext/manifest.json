@@ -2,7 +2,7 @@
 
   "manifest_version": 2,
   "name": "Bring Stars Back",
-  "version": "1.0.1",
+  "version": "1.0.2",
 
   "description": "Places star ratings next to Netflix titles again, where possible.",
 

@@ -4,7 +4,7 @@
 // @include     https://www.netflix.com/browse
 // @include     https://www.netflix.com/browse/*
 // @include     https://www.netflix.com/title/*
-// @version     1.0.1
+// @version     1.0.2
 // @grant       GM_xmlhttpRequest
 // @grant       GM_setValue
 // @grant       GM_getValue
