@@ -10,7 +10,7 @@ To get predicted ratings for your profile requires a DVD enabled Netflix account
 
 ### Features:
 
-* Allows customization of what ratings to show (e.g. show/hide avg stars, predicted stars, new score, and so forth. See the top of the script for controls).
+* Allows customization of what ratings to show (e.g. show/hide avg stars, predicted stars, new score, and so forth). See the top of the script for controls, or check the options page if you're using the browser extension version.
 * Niche feature: lets you dump all the ratings loaded so far to the console via Alt-P, which you can then use to compare all the ratings offline (i.e. see how the new rating system matches up to the stars system in aggregate).
 
 ### Disclaimers:
