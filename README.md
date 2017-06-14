@@ -4,6 +4,8 @@ This is a greasemonkey script and browser extension which adds DVD star ratings 
 
 To get predicted ratings for your profile requires a DVD enabled Netflix account, otherwise only an average community star rating is available.
 
+It may also only work in the US region at the moment. Adding support for other regions will require help from those regions, if it's possible at all.
+
 [(Experimental) Chrome Extension can be found here](https://chrome.google.com/webstore/detail/bring-stars-back/eenicmhcjnllfpjhmigeaalannooliai/)
 
 (Firefox extensions take longer to get approved, will appear here later)
