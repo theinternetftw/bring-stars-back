@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Bring Stars Back (Netflix)
 // @namespace   theinternetftw.com
-// @include     https://www.netflix.com/browse
+// @include     https://www.netflix.com/
 // @include     https://www.netflix.com/browse/*
 // @include     https://www.netflix.com/title/*
 // @version     1.0.3
