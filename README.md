@@ -9,7 +9,7 @@ regions. Post an issue if you run into these problems.
 
 [(Experimental) Chrome Extension can be found here](https://chrome.google.com/webstore/detail/bring-stars-back/eenicmhcjnllfpjhmigeaalannooliai/)
 
-(Firefox extensions take longer to get approved, will appear here later)
+[(Experimental) Firefox add-on here](https://addons.mozilla.org/en-US/firefox/addon/bring-stars-back/)
 
 ### Features:
 
