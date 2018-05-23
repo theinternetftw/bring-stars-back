@@ -6,6 +6,7 @@
 // @include     https://www.netflix.com/browse/*
 // @include     https://www.netflix.com/title/*
 // @version     1.0.5
+// @connect     netflix.com
 // @grant       GM_xmlhttpRequest
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -24,7 +25,7 @@ function remoteGet(url, onLoad) {
         console.log('[bsb] bad status ' + resp.status + ' when loading ' + url);
         onLoad(new DOMParser().parseFromString('', 'text/html'));
       } else {
-        onLoad(resp.responseXML || new DOMParser().parseFromString(resp.responseText, 'text/html'));
+        onLoad(new DOMParser().parseFromString(resp.responseText, 'text/html'));
       }
     },
   });

@@ -5,7 +5,7 @@ function remoteGet(url, onLoad) {
       console.log('[bsb] bad status ' + this.status + ' when loading ' + url);
       onLoad(new DOMParser().parseFromString('', 'text/html'));
     } else {
-      onLoad(this.responseXML || new DOMParser().parseFromString(this.responseText, 'text/html'));
+      onLoad(new DOMParser().parseFromString(this.responseText, 'text/html'));
     }
   };
   req.addEventListener('load', onResponse);
