@@ -5,7 +5,8 @@
 // @include     https://www.netflix.com/browse
 // @include     https://www.netflix.com/browse/*
 // @include     https://www.netflix.com/title/*
-// @version     1.0.5
+// @connect     netflix.com
+// @version     1.0.6
 // @grant       GM_xmlhttpRequest
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -24,7 +25,7 @@ function remoteGet(url, onLoad) {
         console.log('[bsb] bad status ' + resp.status + ' when loading ' + url);
         onLoad(new DOMParser().parseFromString('', 'text/html'));
       } else {
-        onLoad(resp.responseXML || new DOMParser().parseFromString(resp.responseText, 'text/html'));
+        onLoad(new DOMParser().parseFromString(resp.responseText, 'text/html'));
       }
     },
   });
@@ -147,7 +148,7 @@ function getTitleId(wrapper) {
   if (jawbone) {
     return jawbone.id;
   }
-  var bobJawHitzone = nParent(wrapper, 5).querySelector('.bob-jaw-hitzone');
+  var bobJawHitzone = nParent(wrapper, 6).querySelector('.bob-jaw-hitzone');
   if (bobJawHitzone) {
       return getTitleIdFromHref(bobJawHitzone.href);
   }
@@ -159,7 +160,7 @@ function inJawbone(wrapper) {
   if (jawbone) {
     return true;
   }
-  var bobJawHitzone = nParent(wrapper, 5).querySelector('.bob-jaw-hitzone');
+  var bobJawHitzone = nParent(wrapper, 6).querySelector('.bob-jaw-hitzone');
   if (bobJawHitzone) {
     return false;
   }
