@@ -108,7 +108,7 @@ function getTitleId(wrapper) {
   if (jawbone) {
     return jawbone.id;
   }
-  var bobJawHitzone = nParent(wrapper, 5).querySelector('.bob-jaw-hitzone');
+  var bobJawHitzone = nParent(wrapper, 6).querySelector('.bob-jaw-hitzone');
   if (bobJawHitzone) {
       return getTitleIdFromHref(bobJawHitzone.href);
   }
@@ -120,7 +120,7 @@ function inJawbone(wrapper) {
   if (jawbone) {
     return true;
   }
-  var bobJawHitzone = nParent(wrapper, 5).querySelector('.bob-jaw-hitzone');
+  var bobJawHitzone = nParent(wrapper, 6).querySelector('.bob-jaw-hitzone');
   if (bobJawHitzone) {
     return false;
   }
