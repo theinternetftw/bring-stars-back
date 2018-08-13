@@ -247,7 +247,7 @@ function updateScore(wrapper, titleId) {
 }
 
 var observer = new MutationObserver(function(muts) {
-  toArr(document.querySelectorAll('.rating-wrapper')).forEach(function(wrapper) {
+  toArr(document.querySelectorAll('.match-score-wrapper')).forEach(function(wrapper) {
     var titleId = getTitleId(wrapper);
     if (wrapper.dataset.bsbExpectedTitleId != titleId) {
       wrapper.dataset.bsbExpectedTitleId = titleId;
