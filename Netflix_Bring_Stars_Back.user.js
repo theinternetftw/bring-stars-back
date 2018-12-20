@@ -16,16 +16,16 @@ function loadOptions(onLoad) {
   return false; // edit bsbOptions by hand in the greasemonkey script.
 }
 
-function remoteGet(url, onLoad) {
+function remoteGetJSON(url, onLoad) {
   GM_xmlhttpRequest({
     url: url,
     method: 'GET',
     onload: function(resp) {
       if (resp.status != 200) {
         console.log('[bsb] bad status ' + resp.status + ' when loading ' + url);
-        onLoad(new DOMParser().parseFromString('', 'text/html'));
+        onLoad({});
       } else {
-        onLoad(new DOMParser().parseFromString(resp.responseText, 'text/html'));
+        onLoad(JSON.parse(resp.responseText));
       }
     },
   });
@@ -112,26 +112,25 @@ function getRatings(titleId, onGet) {
 }
 
 function getDvdUrl(titleId) {
-  return 'https://dvd.netflix.com/Movie/title/' + titleId;
+  return 'https://portal.dvd.netflix.com/titles/moviesummary?titleId='+titleId+'&returnRoot=true';
 }
 
+// TODO: may need a fix for when there's no dvd plan.
+// have to load the page html (e.g. https://dvd.netflix.com/Movie/MovieName-Here/titleIdHere) and
+// grab the bit at the end where it's set:
+// e.g. dvd.movie['aRating'] = 4.0; (from text search to avoid trying to load a foreign page's javascript?)
+
 function remoteGetRatings(titleId, onGet) {
-  remoteGet(getDvdUrl(titleId), function(responseXML) {
-    var movieDetail = responseXML.querySelector('#movieDetailStars');
-    if (movieDetail) {
-      var myStars = movieDetail.dataset.myrating;
-      var avgStars;
-      var rating = responseXML.querySelector('#ratingInfo');
-      if (rating) {
-        var spans = rating.querySelectorAll('span');
-        avgStars = spans[1].textContent.trim().split(' ')[0];
-      }
+  remoteGetJSON(getDvdUrl(titleId), function(movie) {
+    if (movie.name) {
+      var myStars = movie.cRating;
+      var avgStars = movie.aRating;
       onGet({
         found: true,
-        myStars: myStars,
-        alreadyRated: myStars && myStars != "0.0" && myStars != "-1.0",
-        predictedStars: avgStars && movieDetail.dataset.prediction, // no avg stars == dvd-less and prediction-less, so clear this field
-        avgStars: avgStars || movieDetail.dataset.prediction, // avg stars stored in dataset.prediction for some reason if no dvd plan
+        myStars: movie.cRating.toFixed(1),
+        alreadyRated: movie.cRating != 0 && movie.cRating != -1,
+        predictedStars: avgStars.toFixed(1),
+        avgStars: avgStars.toFixed(1)
       });
     } else {
       onGet({ found: false });

@@ -6,7 +6,7 @@
 // @include     https://www.netflix.com/browse/*
 // @include     https://www.netflix.com/title/*
 // @connect     netflix.com
-// @version     1.0.7
+// @version     1.0.8
 // @grant       GM_xmlhttpRequest
 // @grant       GM_setValue
 // @grant       GM_getValue
@@ -16,16 +16,16 @@ function loadOptions(onLoad) {
   return false; // edit bsbOptions by hand in the greasemonkey script.
 }
 
-function remoteGet(url, onLoad) {
+function remoteGetJSON(url, onLoad) {
   GM_xmlhttpRequest({
     url: url,
     method: 'GET',
     onload: function(resp) {
       if (resp.status != 200) {
         console.log('[bsb] bad status ' + resp.status + ' when loading ' + url);
-        onLoad(new DOMParser().parseFromString('', 'text/html'));
+        onLoad({});
       } else {
-        onLoad(new DOMParser().parseFromString(resp.responseText, 'text/html'));
+        onLoad(JSON.parse(resp.responseText));
       }
     },
   });
