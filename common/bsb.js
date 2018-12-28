@@ -71,8 +71,11 @@ function getRatings(titleId, onGet) {
   });
 }
 
-function getDvdUrl(titleId) {
+function getDvdJSONUrl(titleId) {
   return 'https://portal.dvd.netflix.com/titles/moviesummary?titleId='+titleId+'&returnRoot=true';
+}
+function getDvdUrl(titleId) {
+  return 'https://dvd.netflix.com/Movie/slug/'+titleId;
 }
 
 // TODO: may need a fix for when there's no dvd plan.
@@ -81,7 +84,7 @@ function getDvdUrl(titleId) {
 // e.g. dvd.movie['aRating'] = 4.0; (from text search to avoid trying to load a foreign page's javascript?)
 
 function remoteGetRatings(titleId, onGet) {
-  remoteGetJSON(getDvdUrl(titleId), function(movie) {
+  remoteGetJSON(getDvdJSONUrl(titleId), function(movie) {
     if (movie.name) {
       var myStars = movie.cRating;
       var avgStars = movie.aRating;
