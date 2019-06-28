@@ -132,7 +132,7 @@ function remoteGetRatings(titleId, onGet) {
         found: true,
         myStars: movie.cRating.toFixed(1),
         alreadyRated: movie.cRating != 0 && movie.cRating != -1,
-        predictedStars: avgStars.toFixed(1),
+        predictedStars: movie.prediction.toFixed(1),
         avgStars: avgStars.toFixed(1)
       });
     } else {
